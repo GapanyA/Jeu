@@ -24,9 +24,11 @@ const emojis = [
   "🌻",
   "🐝",
 ];
+const resetButton = document.querySelector("#restart-button");
 
 let firstChoice = null;
 let secondChoice = null;
+let cardsLeftToMatch = emojis.length / 2;
 
 const board = document.querySelector("#board");
 const shuffle = (array) => {
@@ -51,10 +53,28 @@ shuffle(emojis).forEach((emoji) => {
     } else if (secondChoice === null) {
       secondChoice = card;
       card.classList.remove("hidden");
+
+      if (firstChoice.dataset.emoji === secondChoice.dataset.emoji) {
+        cardsLeftToMatch = cardsLeftToMatch - 1;
+        if (cardsLeftToMatch === 0) {
+          window.alert("Bravo !");
+        }
+        firstChoice = null;
+        secondChoice = null;
+      } else {
+        setTimeout(() => {
+          firstChoice.classList.add("hidden");
+          secondChoice.classList.add("hidden");
+          firstChoice = null;
+          secondChoice = null;
+        }, 1000);
+      }
     } else {
-      // on ne fait rien
     }
   });
 
   board.appendChild(card);
+});
+resetButton.addEventListener("click", () => {
+  window.location.reload();
 });
