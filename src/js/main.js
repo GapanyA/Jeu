@@ -145,14 +145,14 @@ const shuffle = (array) => {
 
 const deck = [];
 cardsToPlay.forEach((pilot) => {
-  deck.push({ pilot, type: "image" }); // the picture card
-  deck.push({ pilot, type: "name" }); // the name card
+  deck.push({ pilot, type: "image" });
+  deck.push({ pilot, type: "name" });
 });
 function startGame() {
-  board.innerHTML = ""; // pick up all the old cards
-  firstChoice = null; // forget what you were holding
+  board.innerHTML = "";
+  firstChoice = null;
   secondChoice = null;
-  cardsLeftToMatch = cardsToPlay.length; // score back to zero
+  cardsLeftToMatch = cardsToPlay.length;
   shuffle(deck).forEach(({ pilot, type }) => {
     const card = document.createElement("div");
     card.classList.add("card", "hidden");
@@ -195,7 +195,6 @@ function startGame() {
           firstChoice = null;
           secondChoice = null;
         } else {
-          // Not twins: flip them back after 1 second.
           setTimeout(() => {
             firstChoice.classList.add("hidden");
             secondChoice.classList.add("hidden");
@@ -210,10 +209,10 @@ function startGame() {
   });
 }
 
-startGame(); // lay out the cards the first time
-resetButton.addEventListener("click", startGame); // and again on restart
+startGame();
+resetButton.addEventListener("click", startGame);
 
 numbersButton.addEventListener("click", () => {
   const isOn = board.classList.toggle("show-numbers");
-  // numbersButton.textContent = isOn ? "Hide numbers" : "Show numbers";
+  numbersButton.textContent = isOn ? "Hide numbers" : "Show numbers";
 });
