@@ -9,14 +9,25 @@
       href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap"
       rel="stylesheet"
     />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <h1>Memory Game</h1>
+    <header>
+      <span class="logo"></span>
+      <h1>Memory</h1>
+    </header>
     <div class="plateau">
+      <p id="help">click on a card!</p>
       <div id="board"></div>
       <button id="restart-button">Restart</button>
+      <label for="numbers-toggle" id="label-toggle">Help</label>
+      <label class="switch">
+        <input type="checkbox" id="numbers-toggle" />
+        <span class="slider round"></span>
+      </label>
+      <!-- <button id="numbers-toggle">Show numbers</button> -->
     </div>
     <script src="js/main.js" type="module"></script>
   </body>

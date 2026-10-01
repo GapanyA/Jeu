@@ -12,97 +12,241 @@ img,
 video {
   display: block;
 }
-body {
-  background-color: #ffffff;
-  /* opacity: 0.8; */
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      #ffffff 0,
-      #ffffff 5px,
-      transparent 5px,
-      transparent 10px
-    ),
-    linear-gradient(to bottom, #cbe86b 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    100% 25px;
 
-  font-family: "Playpen Sans", cursive;
+@font-face {
+  font-family: "Formula1-Regular";
+  src:
+    local("Formula1-Regular"),
+    url("../font/Formula1-Regular.woff2") format("woff2"),
+    url("../font/Formula1-Regular.woff") format("woff");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Formula1-Bold";
+  src:
+    local("Formula1-Bold"),
+    url("../font/Formula1-Bold.woff2") format("woff2"),
+    url("../font/Formula1-Bold.woff") format("woff");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Formula1-Wide";
+  src:
+    local("Formula1-Wide"),
+    url("../font/Formula1-Wide.woff2") format("woff2"),
+    url("../font/Formula1-Wide.woff") format("woff");
+}
+
+body {
+  background-color: black;
+
+  font-family: "Formula1-Wide", sans-serif;
 }
 .plateau {
   display: flex;
   flex-direction: rows;
   align-items: flex-start;
+  background-color: black;
+  background-image: url("../img/png/background.png");
+  background-size: 100%;
+  padding-bottom: 3vh;
+}
+p {
+  position: absolute;
+  font-family: "Formula1-Regular", sans-serif;
+  font-size: 2vh;
+  color: #ffffff;
+  text-align: center;
+  background-color: #434359;
+  padding: 0.5vh 1vw;
+  border-radius: 32px;
+  margin: 3.5% 0 0 70%;
 }
 #board {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  margin: 1vh 10vw 4vh 2vw;
-  padding: 2vh 2vw;
-  background-color: #e6f4b6;
+  gap: 5px;
+  margin: 9vh 5vw 4vh 2vw;
+  padding: 3vh 2vw;
+  background-color: #15151e;
   border-radius: 15px;
 }
 button {
-  margin-top: 5vh;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #e6f4b6;
-  color: #82934a;
+  margin-top: 20vh;
+  padding: 3vh 2vw;
+  font-size: 2.5vh;
+  background-color: #ee0000;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: "Playpen Sans", cursive;
+  font-family: "Formula1-Wide", sans-serif;
 }
 button:hover {
-  background-color: #82934a;
-  color: #e6f4b6;
+  background-color: #fff;
+  color: #ee0000;
 }
 h1 {
+  align-self: center;
   text-align: center;
   font-size: 6vh;
-  margin-top: 20px;
-  color: #a1bb4d;
+  color: black;
 }
 .card {
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #a1bb4d;
-  border: 1px solid #cbe86b;
-  border-radius: 5px;
-  padding: 9vh 5vw;
   position: relative;
-  font-size: 6vh;
-  transform: rotateY(-180deg);
-  --webkit-transform: rotateY(-180deg);
-  transition: 0.2s ease-out;
+  border-radius: 5px;
+  padding: 8vh 3vw;
+  perspective: 800px;
+  cursor: pointer;
+  font-family: "Formula1-Regular", sans-serif;
 }
-.card:not(.hidden)::after {
-  content: attr(data-emoji);
+
+.card-inner {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-out;
 }
-.card.hidden {
-  background: #82934a;
+
+.card:not(.hidden) .card-inner {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  border: 1px solid #cbe86b;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.back {
+  background-color: #1e1e1e;
+  background-image: url("../img/svg/LogoF1.svg");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 7px solid #a2a2a2;
+}
+
+.front {
+  background-image: var(--img), var(--bg);
+  background-size: 152%, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.5vh;
+  font-weight: bold;
+  color: #ffffff;
+  border: 5px solid #ffffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0% 5%;
+  gap: 25%;
   background-color: #ffffff;
-  opacity: 0.8;
-  background-image:
-    radial-gradient(circle at center center, #cbe86b, #ffffff),
-    repeating-radial-gradient(
-      circle at center center,
-      #cbe86b,
-      #cbe86b,
-      10px,
-      transparent 20px,
-      transparent 10px
-    );
-  background-blend-mode: multiply;
-  transform: rotateY(0deg);
-  --webkit-transform: rotateY(0deg);
+}
+
+.logo {
+  display: block;
+  padding: 60px;
+  background-image: url("../img/svg/LogoF1.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pilot-number {
+  display: none;
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-weight: bold;
+  font-size: 3vh;
+  text-shadow: 0px 0px 3px #15151e9c;
+}
+
+#board.show-numbers .pilot-number {
+  display: block;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin-left: -95px;
+  margin-top: 70vh;
+  width: 105px;
+  height: 44px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #434359;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 36px;
+  left: 6px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #ee0000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ee0000;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(58px);
+  -ms-transform: translateX(58px);
+  transform: translateX(58px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+#label-toggle {
+  display: block;
+  font-size: 2vh;
+  color: white;
+  margin-left: -4.5vw;
+  margin-top: 67vh;
+  font-family: "Formula1-Regular", sans-serif;
 }
