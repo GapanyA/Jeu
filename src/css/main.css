@@ -168,7 +168,7 @@ header {
 .pilot-number {
   display: none;
   position: absolute;
-  bottom: 6px;
+  bottom: 0px;
   right: 8px;
   font-weight: bold;
   font-size: 3vh;
