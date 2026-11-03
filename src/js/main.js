@@ -131,6 +131,7 @@ function cardImageURL(pilot) {
 let firstChoice = null;
 let secondChoice = null;
 let cardsLeftToMatch = cardsToPlay.length;
+d;
 
 const board = document.querySelector("#board");
 const shuffle = (array) => {
