@@ -131,7 +131,6 @@ function cardImageURL(pilot) {
 let firstChoice = null;
 let secondChoice = null;
 let cardsLeftToMatch = cardsToPlay.length;
-d;
 
 const board = document.querySelector("#board");
 const shuffle = (array) => {
@@ -215,5 +214,4 @@ resetButton.addEventListener("click", startGame);
 
 numbersButton.addEventListener("click", () => {
   const isOn = board.classList.toggle("show-numbers");
-  numbersButton.textContent = isOn ? "Hide numbers" : "Show numbers";
 });
